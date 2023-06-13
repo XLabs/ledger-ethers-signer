@@ -9,6 +9,7 @@
     "strict": true,
     "declaration": true,
     "declarationMap": true,
+    "composite": true,
     "moduleResolution": "node"
   },
   "exclude": [],

@@ -1,2 +1,9 @@
-lib/
+# Mac cache
+.DS_Store/
+# node packages
 node_modules/
+
+# build output
+lib/
+# build cache
+tsconfig.tsbuildinfo

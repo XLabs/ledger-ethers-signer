@@ -1,7 +1,6 @@
 {
   "name": "@xlabs/ledger-signer",
   "main": "./lib/index.js",
-  "module": "./lib.esm/index.js",
   "types": "./lib/index.d.ts",
   "author": "",
   "dependencies": {
