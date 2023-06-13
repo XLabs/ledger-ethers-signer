@@ -1,0 +1,29 @@
+{
+  "name": "@xlabs/ledger-signer",
+  "main": "./lib/index.js",
+  "module": "./lib.esm/index.js",
+  "types": "./lib/index.d.ts",
+  "author": "",
+  "dependencies": {
+    "@ledgerhq/hw-app-eth": "6.33.4",
+    "@ledgerhq/hw-transport": "6.28.4",
+    "@ledgerhq/hw-transport-node-hid": "6.27.15",
+    "ethers": "^5.7.0"
+  },
+  "description": "Ledger signer for ethers v5.",
+  "keywords": [
+    "Ethereum",
+    "ethers"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc --build tsconfig.json",
+    "test": "exit 1"
+  },
+  "version": "0.0.1",
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "prettier": "^2.8.8",
+    "typescript": "^5.1.3"
+  }
+}
