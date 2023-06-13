@@ -1,5 +1,5 @@
 {
-  "name": "@xlabs/ledger-signer",
+  "name": "@xlabs-xyz/ledger-signer",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "author": "",
