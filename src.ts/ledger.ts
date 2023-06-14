@@ -47,11 +47,13 @@ export class LedgerSigner extends ethers.Signer {
             try {
                 const result = await operation(this.ethApp);
                 return result;
-            } catch (error) {
+            } catch (error: any) {
                 // `TransportLocked` indicates that a request is being processed.
                 // It allows defining a critical section in the driver.
                 // We only need to retry the request until the driver isn't busy servicing another request.
-                if ((error as any)?.id !== "TransportLocked") {
+                if (error?.id !== "TransportLocked") {
+                    // TODO: remove this assignment once https://github.com/LedgerHQ/ledger-live/pull/3631 is included in a release.
+                    error.stack = `${error.message}\n${error.stack}`;
                     throw error;
                 }
             }
