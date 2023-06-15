@@ -19,7 +19,7 @@
     "build": "tsc --build tsconfig.json",
     "test": "exit 1"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "devDependencies": {
     "@ledgerhq/types-cryptoassets": "^7.2.1",
     "@types/node": "^18.0.0",
