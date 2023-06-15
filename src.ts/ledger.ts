@@ -42,8 +42,8 @@ export class LedgerSigner extends ethers.Signer {
     private async _retry<T = any>(
         operation: (eth: Eth) => Promise<T>
     ): Promise<T> {
-        // Wait up to 5 seconds
-        for (let i = 0; i < 50; i++) {
+        // Wait up to 120 seconds
+        for (let i = 0; i < 1200; i++) {
             try {
                 const result = await operation(this.ethApp);
                 return result;
