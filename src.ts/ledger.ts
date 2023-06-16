@@ -10,6 +10,9 @@ function sleep(duration: number): Promise<void> {
     });
 }
 
+let createEthApp = false;
+let ethApp: Eth;
+
 export class LedgerSigner extends ethers.Signer {
     // This configuration is used to resolve properties when trying to clear sign.
     // TODO: figure out what and how these are resolved exactly.
@@ -31,12 +34,26 @@ export class LedgerSigner extends ethers.Signer {
         provider: ethers.providers.Provider,
         path = defaultPath
     ) {
-        const transport = await Transport.create();
-        const eth = new Eth(transport);
-        // Check that the connection is working
-        await eth.getAppConfiguration();
+        if (!createEthApp) {
+            createEthApp = true;
+            const transport = await Transport.create();
+            ethApp = new Eth(transport);
+            // Check that the connection is working
+            await ethApp.getAppConfiguration();
+        } else if (ethApp === undefined) {
+            // The transport is in the process of being created
+            for (let i = 0; i < 1200; i++) {
+                await sleep(100);
+                if (ethApp !== undefined) break;
+                if (i === 1199) {
+                    throw new Error(
+                        "Timed out while waiting for transport to open."
+                    );
+                }
+            }
+        }
 
-        return new LedgerSigner(provider, eth, path);
+        return new LedgerSigner(provider, ethApp, path);
     }
 
     private async _retry<T = any>(
