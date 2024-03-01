@@ -69,8 +69,6 @@ export class LedgerSigner extends ethers.Signer {
                 // It allows defining a critical section in the driver.
                 // We only need to retry the request until the driver isn't busy servicing another request.
                 if (error?.id !== "TransportLocked") {
-                    // TODO: remove this assignment once https://github.com/LedgerHQ/ledger-live/pull/3631 is included in a release.
-                    error.stack = `${error.message}\n${error.stack}`;
                     throw error;
                 }
             }
