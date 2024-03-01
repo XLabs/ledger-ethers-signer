@@ -36,7 +36,7 @@ export class LedgerSigner extends ethers.Signer {
     ) {
         if (!createEthApp) {
             createEthApp = true;
-            const transport = await Transport.create();
+            const transport = await Transport.open(undefined);
             ethApp = new Eth(transport);
             // Check that the connection is working
             await ethApp.getAppConfiguration();
