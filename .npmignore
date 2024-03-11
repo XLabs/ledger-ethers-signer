@@ -8,3 +8,6 @@ yarn.lock
 tsconfig.json
 # build cache
 tsconfig.tsbuildinfo
+
+# temporary files
+tmp/
