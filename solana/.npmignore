@@ -1,0 +1,10 @@
+# Mac cache
+.DS_Store
+# node packages
+node_modules/
+yarn.lock
+
+# build config
+tsconfig.json
+# build cache
+tsconfig.tsbuildinfo
