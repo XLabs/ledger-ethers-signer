@@ -10,3 +10,12 @@ tsconfig.tsbuildinfo
 
 # temporary files
 tmp/
+
+# Yarn
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

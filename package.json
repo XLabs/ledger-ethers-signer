@@ -1,0 +1,9 @@
+{
+  "name": "@xlabs/ledger-ethers-signer",
+  "private": true,
+  "workspaces": [
+    "ethers-v5",
+    "solana"
+  ],
+  "packageManager": "yarn@4.2.2"
+}
