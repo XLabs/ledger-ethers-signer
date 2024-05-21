@@ -6,6 +6,9 @@
     "ethers-v6",
     "solana"
   ],
+  "scripts": {
+    "build": "yarn workspaces foreach --all --parallel run build"
+  },
   "packageManager": "yarn@4.2.2",
   "devDependencies": {
     "@ledgerhq/types-cryptoassets": "^7.12.0",
