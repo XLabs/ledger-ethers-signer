@@ -5,6 +5,13 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
+"@adraffy/ens-normalize@npm:1.10.1":
+  version: 1.10.1
+  resolution: "@adraffy/ens-normalize@npm:1.10.1"
+  checksum: 10c0/fdd647604e8fac6204921888aaf5a6bc65eabf0d2921bc5f93b64d01f4bc33ead167c1445f7de05468d05cd92ac31b74c68d2be840c62b79d73693308f885c06
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.24.5":
   version: 7.24.5
   resolution: "@babel/runtime@npm:7.24.5"
@@ -656,7 +663,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/types-cryptoassets@npm:7.12.0":
+"@ledgerhq/types-cryptoassets@npm:7.12.0, @ledgerhq/types-cryptoassets@npm:^7.12.0":
   version: 7.12.0
   resolution: "@ledgerhq/types-cryptoassets@npm:7.12.0"
   checksum: 10c0/64154be3852ae946791158da217288ab604b1cf9b1005880b6a986462551894bc82e8fb5bea92da9a07be5b85ebf7150f897341606407222801ce9417eb21633
@@ -670,7 +677,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/types-devices@npm:6.24.0":
+"@ledgerhq/types-devices@npm:6.24.0, @ledgerhq/types-devices@npm:^6.24.0":
   version: 6.24.0
   resolution: "@ledgerhq/types-devices@npm:6.24.0"
   checksum: 10c0/03584280bfa48835cc38562f1fa82a49b3c01e234fe7621aa04f0632c9b699d4b916f11b8f4747e8b0219fc9330647ca382c5494a7f477f2eea16617adc35cbf
@@ -687,12 +694,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@noble/curves@npm:1.2.0":
+  version: 1.2.0
+  resolution: "@noble/curves@npm:1.2.0"
+  dependencies:
+    "@noble/hashes": "npm:1.3.2"
+  checksum: 10c0/0bac7d1bbfb3c2286910b02598addd33243cb97c3f36f987ecc927a4be8d7d88e0fcb12b0f0ef8a044e7307d1844dd5c49bb724bfa0a79c8ec50ba60768c97f6
+  languageName: node
+  linkType: hard
+
 "@noble/curves@npm:^1.4.0":
   version: 1.4.0
   resolution: "@noble/curves@npm:1.4.0"
   dependencies:
     "@noble/hashes": "npm:1.4.0"
   checksum: 10c0/31fbc370df91bcc5a920ca3f2ce69c8cf26dc94775a36124ed8a5a3faf0453badafd2ee4337061ffea1b43c623a90ee8b286a5a81604aaf9563bdad7ff795d18
+  languageName: node
+  linkType: hard
+
+"@noble/hashes@npm:1.3.2":
+  version: 1.3.2
+  resolution: "@noble/hashes@npm:1.3.2"
+  checksum: 10c0/2482cce3bce6a596626f94ca296e21378e7a5d4c09597cbc46e65ffacc3d64c8df73111f2265444e36a3168208628258bbbaccba2ef24f65f58b2417638a20e7
   languageName: node
   linkType: hard
 
@@ -819,6 +842,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:18.15.13":
+  version: 18.15.13
+  resolution: "@types/node@npm:18.15.13"
+  checksum: 10c0/6e5f61c559e60670a7a8fb88e31226ecc18a21be103297ca4cf9848f0a99049dae77f04b7ae677205f2af494f3701b113ba8734f4b636b355477a6534dbb8ada
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:^12.12.54":
   version: 12.20.55
   resolution: "@types/node@npm:12.20.55"
@@ -841,6 +871,23 @@ __metadata:
   checksum: 10c0/f1f53febd8623a85cef2652949acd19d83967e350ea15a851593e3033501750a1e04f418552e487db90a3d48611a1cff3ffcf139b94190c10f2fd1e1dc95ff10
   languageName: node
   linkType: hard
+
+"@xlabs-xyz/ledger-signer-ethers-v6@workspace:ethers-v6":
+  version: 0.0.0-use.local
+  resolution: "@xlabs-xyz/ledger-signer-ethers-v6@workspace:ethers-v6"
+  dependencies:
+    "@ledgerhq/hw-app-eth": "npm:6.36.1"
+    "@ledgerhq/hw-transport": "npm:6.30.6"
+    "@ledgerhq/hw-transport-node-hid": "npm:6.28.6"
+    "@ledgerhq/types-cryptoassets": "npm:7.12.0"
+    "@ledgerhq/types-devices": "npm:6.24.0"
+    "@types/node": "npm:^20.12.12"
+    "@types/node-hid": "npm:^1.3.4"
+    ethers: "npm:6.12.1"
+    prettier: "npm:^3.2.5"
+    typescript: "npm:^5.4.5"
+  languageName: unknown
+  linkType: soft
 
 "@xlabs-xyz/ledger-signer-solana@workspace:solana":
   version: 0.0.0-use.local
@@ -880,6 +927,12 @@ __metadata:
 "@xlabs/ledger-ethers-signer@workspace:.":
   version: 0.0.0-use.local
   resolution: "@xlabs/ledger-ethers-signer@workspace:."
+  dependencies:
+    "@ledgerhq/types-cryptoassets": "npm:^7.12.0"
+    "@ledgerhq/types-devices": "npm:^6.24.0"
+    "@types/node-hid": "npm:^1.3.4"
+    prettier: "npm:^3.2.5"
+    typescript: "npm:^5.4.5"
   languageName: unknown
   linkType: soft
 
@@ -922,6 +975,13 @@ __metadata:
   version: 3.0.0
   resolution: "aes-js@npm:3.0.0"
   checksum: 10c0/87dd5b2363534b867db7cef8bc85a90c355460783744877b2db7c8be09740aac5750714f9e00902822f692662bda74cdf40e03fbb5214ffec75c2666666288b8
+  languageName: node
+  linkType: hard
+
+"aes-js@npm:4.0.0-beta.5":
+  version: 4.0.0-beta.5
+  resolution: "aes-js@npm:4.0.0-beta.5"
+  checksum: 10c0/444f4eefa1e602cbc4f2a3c644bc990f93fd982b148425fee17634da510586fc09da940dcf8ace1b2d001453c07ff042e55f7a0482b3cc9372bf1ef75479090c
   languageName: node
   linkType: hard
 
@@ -1478,6 +1538,21 @@ __metadata:
     "@ethersproject/web": "npm:5.7.1"
     "@ethersproject/wordlists": "npm:5.7.0"
   checksum: 10c0/90629a4cdb88cde7a7694f5610a83eb00d7fbbaea687446b15631397988f591c554dd68dfa752ddf00aabefd6285e5b298be44187e960f5e4962684e10b39962
+  languageName: node
+  linkType: hard
+
+"ethers@npm:6.12.1":
+  version: 6.12.1
+  resolution: "ethers@npm:6.12.1"
+  dependencies:
+    "@adraffy/ens-normalize": "npm:1.10.1"
+    "@noble/curves": "npm:1.2.0"
+    "@noble/hashes": "npm:1.3.2"
+    "@types/node": "npm:18.15.13"
+    aes-js: "npm:4.0.0-beta.5"
+    tslib: "npm:2.4.0"
+    ws: "npm:8.5.0"
+  checksum: 10c0/7686e1efdb0a831578f35d69188783c225de5a6fbb1b422327bc45cee04d49a2707e73c9342a6a5eb2870ce35668c71372737439ec3993d31d83f4a0e2446cc7
   languageName: node
   linkType: hard
 
@@ -2716,6 +2791,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tslib@npm:2.4.0":
+  version: 2.4.0
+  resolution: "tslib@npm:2.4.0"
+  checksum: 10c0/eb19bda3ae545b03caea6a244b34593468e23d53b26bf8649fbc20fce43e9b21a71127fd6d2b9662c0fe48ee6ff668ead48fd00d3b88b2b716b1c12edae25b5d
+  languageName: node
+  linkType: hard
+
 "tslib@npm:^2.1.0":
   version: 2.6.2
   resolution: "tslib@npm:2.6.2"
@@ -2909,6 +2991,21 @@ __metadata:
     utf-8-validate:
       optional: true
   checksum: 10c0/4b44b59bbc0549c852fb2f0cdb48e40e122a1b6078aeed3d65557cbeb7d37dda7a4f0027afba2e6a7a695de17701226d02b23bd15c97b0837808c16345c62f8e
+  languageName: node
+  linkType: hard
+
+"ws@npm:8.5.0":
+  version: 8.5.0
+  resolution: "ws@npm:8.5.0"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ^5.0.2
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 10c0/0baeee03e97865accda8fad51e8e5fa17d19b8e264529efdf662bbba2acc1c7f1de8316287e6df5cb639231a96009e6d5234b57e6ff36ee2d04e49a0995fec2f
   languageName: node
   linkType: hard
 
