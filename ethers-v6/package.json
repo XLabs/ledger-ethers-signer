@@ -17,6 +17,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc --build tsconfig.json",
+    "test:transfer": "tsx test/testSignTx.ts",
     "test": "exit 1"
   },
   "version": "0.0.1",
@@ -26,6 +27,7 @@
     "@types/node": "^20.12.12",
     "@types/node-hid": "^1.3.4",
     "prettier": "^3.2.5",
+    "tsx": "^4.10.5",
     "typescript": "^5.4.5"
   }
 }
