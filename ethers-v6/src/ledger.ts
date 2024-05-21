@@ -53,7 +53,7 @@ export class LedgerSigner extends AbstractSigner {
      *  ``m/44'/60'/0'/0/0``.
      */
     private constructor(
-        public readonly provider: Provider | null,
+        provider: Provider | null,
         private readonly ethApp: Eth,
         public readonly path: string,
     ) {

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "./lib/",
-    "rootDir": "./src.ts",
+    "rootDir": "./src",
     "lib": ["es2023", "DOM"],
     "module": "CommonJS",
     "target": "es2022",
@@ -14,6 +14,6 @@
   },
   "exclude": [],
   "include": [
-    "./src.ts/*"
+    "./src"
   ]
 }
