@@ -4,6 +4,9 @@
 node_modules/
 yarn.lock
 
+# tests
+test/
+
 # build config
 tsconfig.json
 # build cache

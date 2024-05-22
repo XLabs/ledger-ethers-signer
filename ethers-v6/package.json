@@ -1,7 +1,7 @@
 {
   "name": "@xlabs-xyz/ledger-signer-ethers-v6",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "main": "./lib/ledger.js",
+  "types": "./lib/ledger.d.ts",
   "author": "",
   "dependencies": {
     "@ledgerhq/hw-app-eth": "6.36.1",

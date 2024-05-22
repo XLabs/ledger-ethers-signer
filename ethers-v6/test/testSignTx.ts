@@ -1,4 +1,4 @@
-import {LedgerSigner} from "../src";
+import {LedgerSigner} from "../src/ledger";
 import {JsonRpcProvider} from "ethers";
 
 
