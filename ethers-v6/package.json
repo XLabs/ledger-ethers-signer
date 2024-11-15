@@ -1,15 +1,15 @@
 {
-  "name": "@xlabs-xyz/ledger-signer",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "name": "@xlabs-xyz/ledger-signer-ethers-v6",
+  "main": "./lib/ledger.js",
+  "types": "./lib/ledger.d.ts",
   "author": "",
   "dependencies": {
     "@ledgerhq/hw-app-eth": "6.36.1",
     "@ledgerhq/hw-transport": "6.30.6",
     "@ledgerhq/hw-transport-node-hid": "6.28.6",
-    "ethers": "^5.7.2"
+    "ethers": "6.12.1"
   },
-  "description": "Ledger signer for ethers v5.",
+  "description": "Ledger signer for ethers v6.",
   "keywords": [
     "Ethereum",
     "ethers"
@@ -17,15 +17,17 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc --build tsconfig.json",
+    "test:transfer": "tsx test/testSignTx.ts",
     "test": "exit 1"
   },
-  "version": "0.0.5",
+  "version": "0.0.1",
   "devDependencies": {
     "@ledgerhq/types-cryptoassets": "7.12.0",
     "@ledgerhq/types-devices": "6.24.0",
     "@types/node": "^20.12.12",
     "@types/node-hid": "^1.3.4",
     "prettier": "^3.2.5",
+    "tsx": "^4.10.5",
     "typescript": "^5.4.5"
   }
 }
