@@ -1,5 +1,6 @@
 {
   "name": "@xlabs-xyz/ledger-signer",
+  "version": "0.0.6",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "author": "",
@@ -19,11 +20,10 @@
     "build": "tsc --build tsconfig.json",
     "test": "exit 1"
   },
-  "version": "0.0.5",
   "devDependencies": {
     "@ledgerhq/types-cryptoassets": "7.12.0",
     "@ledgerhq/types-devices": "6.24.0",
-    "@types/node": "^20.12.12",
+    "@types/node": "^22.0.0",
     "@types/node-hid": "^1.3.4",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5"

@@ -824,7 +824,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/types-cryptoassets@npm:7.12.0, @ledgerhq/types-cryptoassets@npm:^7.12.0":
+"@ledgerhq/types-cryptoassets@npm:7.12.0":
   version: 7.12.0
   resolution: "@ledgerhq/types-cryptoassets@npm:7.12.0"
   checksum: 10c0/64154be3852ae946791158da217288ab604b1cf9b1005880b6a986462551894bc82e8fb5bea92da9a07be5b85ebf7150f897341606407222801ce9417eb21633
@@ -838,7 +838,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/types-devices@npm:6.24.0, @ledgerhq/types-devices@npm:^6.24.0":
+"@ledgerhq/types-devices@npm:6.24.0":
   version: 6.24.0
   resolution: "@ledgerhq/types-devices@npm:6.24.0"
   checksum: 10c0/03584280bfa48835cc38562f1fa82a49b3c01e234fe7621aa04f0632c9b699d4b916f11b8f4747e8b0219fc9330647ca382c5494a7f477f2eea16617adc35cbf
@@ -994,7 +994,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.12.12":
+"@types/node@npm:*":
   version: 20.12.12
   resolution: "@types/node@npm:20.12.12"
   dependencies:
@@ -1014,6 +1014,15 @@ __metadata:
   version: 12.20.55
   resolution: "@types/node@npm:12.20.55"
   checksum: 10c0/3b190bb0410047d489c49bbaab592d2e6630de6a50f00ba3d7d513d59401d279972a8f5a598b5bb8ddc1702f8a2f4ec57a65d93852f9c329639738e7053637d1
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^22.0.0":
+  version: 22.19.1
+  resolution: "@types/node@npm:22.19.1"
+  dependencies:
+    undici-types: "npm:~6.21.0"
+  checksum: 10c0/6edd93aea86da740cb7872626839cd6f4a67a049d3a3a6639cb592c620ec591408a30989ab7410008d1a0b2d4985ce50f1e488e79c033e4476d3bec6833b0a2f
   languageName: node
   linkType: hard
 
@@ -1042,7 +1051,7 @@ __metadata:
     "@ledgerhq/hw-transport-node-hid": "npm:6.28.6"
     "@ledgerhq/types-cryptoassets": "npm:7.12.0"
     "@ledgerhq/types-devices": "npm:6.24.0"
-    "@types/node": "npm:^20.12.12"
+    "@types/node": "npm:^22.0.0"
     "@types/node-hid": "npm:^1.3.4"
     ethers: "npm:6.12.1"
     prettier: "npm:^3.2.5"
@@ -1061,7 +1070,7 @@ __metadata:
     "@ledgerhq/types-cryptoassets": "npm:7.10.0"
     "@ledgerhq/types-devices": "npm:6.23.0"
     "@solana/web3.js": "npm:^1.91.0"
-    "@types/node": "npm:^20.12.12"
+    "@types/node": "npm:^22.0.0"
     "@types/node-hid": "npm:1.3.4"
     prettier: "npm:^3.2.5"
     ts-node: "npm:^10.9.2"
@@ -1078,21 +1087,9 @@ __metadata:
     "@ledgerhq/hw-transport-node-hid": "npm:6.28.6"
     "@ledgerhq/types-cryptoassets": "npm:7.12.0"
     "@ledgerhq/types-devices": "npm:6.24.0"
-    "@types/node": "npm:^20.12.12"
+    "@types/node": "npm:^22.0.0"
     "@types/node-hid": "npm:^1.3.4"
     ethers: "npm:^5.7.2"
-    prettier: "npm:^3.2.5"
-    typescript: "npm:^5.4.5"
-  languageName: unknown
-  linkType: soft
-
-"@xlabs/ledger-ethers-signer@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@xlabs/ledger-ethers-signer@workspace:."
-  dependencies:
-    "@ledgerhq/types-cryptoassets": "npm:^7.12.0"
-    "@ledgerhq/types-devices": "npm:^6.24.0"
-    "@types/node-hid": "npm:^1.3.4"
     prettier: "npm:^3.2.5"
     typescript: "npm:^5.4.5"
   languageName: unknown
@@ -2744,6 +2741,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"root@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "root@workspace:."
+  languageName: unknown
+  linkType: soft
+
 "rpc-websockets@npm:^7.11.0":
   version: 7.11.0
   resolution: "rpc-websockets@npm:7.11.0"
@@ -3131,6 +3134,13 @@ __metadata:
   version: 5.26.5
   resolution: "undici-types@npm:5.26.5"
   checksum: 10c0/bb673d7876c2d411b6eb6c560e0c571eef4a01c1c19925175d16e3a30c4c428181fb8d7ae802a261f283e4166a0ac435e2f505743aa9e45d893f9a3df017b501
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~6.21.0":
+  version: 6.21.0
+  resolution: "undici-types@npm:6.21.0"
+  checksum: 10c0/c01ed51829b10aa72fc3ce64b747f8e74ae9b60eafa19a7b46ef624403508a54c526ffab06a14a26b3120d055e1104d7abe7c9017e83ced038ea5cf52f8d5e04
   languageName: node
   linkType: hard
 
