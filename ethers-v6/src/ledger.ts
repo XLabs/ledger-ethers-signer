@@ -29,6 +29,10 @@ function sleep(duration: number): Promise<void> {
 
 let createEthApp = false;
 let ethApp: Eth;
+// This cache is only valid for a single device.
+// Since we only ever open a connection once and we don't attempt to reconnect,
+// we don't need to handle cache invalidation.
+const addressCache: Record<string, string | undefined> = {};
 
 /**
  *  A **LedgerSigner** provides access to a Ledger Hardware Wallet
@@ -104,6 +108,11 @@ export class LedgerSigner extends AbstractSigner {
                 const result = await operation(this.ethApp);
                 return result;
             } catch (error: any) {
+                // TODO: check if this error type is exported in some ledger library.
+                if (error?.statusCode === 27404) {
+                    // TODO: define a custom error type for this?
+                    throw new Error(`Ledger device is not running Ethereum App`);
+                }
                 // `TransportLocked` indicates that a request is being processed.
                 // It allows defining a critical section in the driver.
                 // We only need to retry the request until the driver isn't busy servicing another request.
@@ -118,20 +127,14 @@ export class LedgerSigner extends AbstractSigner {
     }
 
     public async getAddress(): Promise<string> {
-        try {
-            const account = await this._retry((eth) =>
-                eth.getAddress(this.path),
-            );
-            return getAddress(account.address);
-        } catch (error) {
-            // TODO: check if this error type is exported in some ledger library.
-            if ((error as any)?.statusCode === 27404) {
-                // TODO: define a custom error type for this?
-                throw new Error(`Ledger device is not running Ethereum App`);
-            }
+        const cachedAddress = addressCache[this.path];
+        if (cachedAddress !== undefined) return cachedAddress;
 
-            throw error;
-        }
+        const account = await this._retry((eth) =>
+            eth.getAddress(this.path),
+        );
+        const address = addressCache[this.path] = getAddress(account.address);
+        return address;
     }
 
     async signTransaction(txRequest: TransactionRequest): Promise<string> {

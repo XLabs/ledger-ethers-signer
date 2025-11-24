@@ -12,6 +12,10 @@ function sleep(duration: number): Promise<void> {
 
 let createEthApp = false;
 let ethApp: Eth;
+// This cache is only valid for a single device.
+// Since we only ever open a connection once and we don't attempt to reconnect,
+// we don't need to handle cache invalidation.
+const addressCache: Record<string, string | undefined> = {};
 
 export class LedgerSigner extends ethers.Signer {
     // This configuration is used to resolve properties when trying to clear sign.
@@ -79,8 +83,12 @@ export class LedgerSigner extends ethers.Signer {
     }
 
     public async getAddress(): Promise<string> {
+        const cachedAddress = addressCache[this.path];
+        if (cachedAddress !== undefined) return cachedAddress;
+
         const account = await this._retry((eth) => eth.getAddress(this.path));
-        return ethers.utils.getAddress(account.address);
+        const address = addressCache[this.path] = ethers.utils.getAddress(account.address);
+        return address;
     }
 
     public async signMessage(
