@@ -1229,14 +1229,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/types-devices@npm:6.24.0":
-  version: 6.24.0
-  resolution: "@ledgerhq/types-devices@npm:6.24.0"
-  checksum: 10c0/03584280bfa48835cc38562f1fa82a49b3c01e234fe7621aa04f0632c9b699d4b916f11b8f4747e8b0219fc9330647ca382c5494a7f477f2eea16617adc35cbf
-  languageName: node
-  linkType: hard
-
-"@ledgerhq/types-devices@npm:^6.24.0":
+"@ledgerhq/types-devices@npm:6.27.0, @ledgerhq/types-devices@npm:^6.24.0":
   version: 6.27.0
   resolution: "@ledgerhq/types-devices@npm:6.27.0"
   checksum: 10c0/1287eb44efb4970fdf3a09b70db212ea30829ff594e5727ae74b0d647d6bd2cef70d8d54eb6a9dc9549eef76b5295c3715ae04ec58e07490c39d7c3e5cbfab9c
@@ -1491,7 +1484,7 @@ __metadata:
     "@ledgerhq/hw-transport": "npm:6.31.13"
     "@ledgerhq/hw-transport-node-hid": "npm:6.29.14"
     "@ledgerhq/types-cryptoassets": "npm:7.12.0"
-    "@ledgerhq/types-devices": "npm:6.24.0"
+    "@ledgerhq/types-devices": "npm:6.27.0"
     "@types/node": "npm:^22.19.1"
     "@types/node-hid": "npm:^1.3.4"
     ethers: "npm:6.15.0"
@@ -1509,7 +1502,7 @@ __metadata:
     "@ledgerhq/hw-transport": "npm:6.31.13"
     "@ledgerhq/hw-transport-node-hid": "npm:6.29.14"
     "@ledgerhq/types-cryptoassets": "npm:7.12.0"
-    "@ledgerhq/types-devices": "npm:6.24.0"
+    "@ledgerhq/types-devices": "npm:6.27.0"
     "@solana/web3.js": "npm:^1.98.4"
     "@types/node": "npm:^22.19.1"
     "@types/node-hid": "npm:^1.3.4"
@@ -1527,7 +1520,7 @@ __metadata:
     "@ledgerhq/hw-transport": "npm:6.31.13"
     "@ledgerhq/hw-transport-node-hid": "npm:6.29.14"
     "@ledgerhq/types-cryptoassets": "npm:7.12.0"
-    "@ledgerhq/types-devices": "npm:6.24.0"
+    "@ledgerhq/types-devices": "npm:6.27.0"
     "@types/node": "npm:^22.19.1"
     "@types/node-hid": "npm:^1.3.4"
     ethers: "npm:^5.8.0"

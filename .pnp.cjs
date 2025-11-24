@@ -1360,13 +1360,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@ledgerhq/types-devices", [\
-      ["npm:6.24.0", {\
-        "packageLocation": "../../../../.yarn/berry/cache/@ledgerhq-types-devices-npm-6.24.0-e16cf2790d-10c0.zip/node_modules/@ledgerhq/types-devices/",\
-        "packageDependencies": [\
-          ["@ledgerhq/types-devices", "npm:6.24.0"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:6.27.0", {\
         "packageLocation": "../../../../.yarn/berry/cache/@ledgerhq-types-devices-npm-6.27.0-82c5ef9f7c-10c0.zip/node_modules/@ledgerhq/types-devices/",\
         "packageDependencies": [\
@@ -1674,7 +1667,7 @@ const RAW_RUNTIME_STATE =
           ["@ledgerhq/hw-transport", "npm:6.31.13"],\
           ["@ledgerhq/hw-transport-node-hid", "npm:6.29.14"],\
           ["@ledgerhq/types-cryptoassets", "npm:7.12.0"],\
-          ["@ledgerhq/types-devices", "npm:6.24.0"],\
+          ["@ledgerhq/types-devices", "npm:6.27.0"],\
           ["@types/node", "npm:22.19.1"],\
           ["@types/node-hid", "npm:1.3.4"],\
           ["@xlabs-xyz/ledger-signer", "workspace:ethers-v5"],\
@@ -1693,7 +1686,7 @@ const RAW_RUNTIME_STATE =
           ["@ledgerhq/hw-transport", "npm:6.31.13"],\
           ["@ledgerhq/hw-transport-node-hid", "npm:6.29.14"],\
           ["@ledgerhq/types-cryptoassets", "npm:7.12.0"],\
-          ["@ledgerhq/types-devices", "npm:6.24.0"],\
+          ["@ledgerhq/types-devices", "npm:6.27.0"],\
           ["@types/node", "npm:22.19.1"],\
           ["@types/node-hid", "npm:1.3.4"],\
           ["@xlabs-xyz/ledger-signer-ethers-v6", "workspace:ethers-v6"],\
@@ -1713,7 +1706,7 @@ const RAW_RUNTIME_STATE =
           ["@ledgerhq/hw-transport", "npm:6.31.13"],\
           ["@ledgerhq/hw-transport-node-hid", "npm:6.29.14"],\
           ["@ledgerhq/types-cryptoassets", "npm:7.12.0"],\
-          ["@ledgerhq/types-devices", "npm:6.24.0"],\
+          ["@ledgerhq/types-devices", "npm:6.27.0"],\
           ["@solana/web3.js", "npm:1.98.4"],\
           ["@types/node", "npm:22.19.1"],\
           ["@types/node-hid", "npm:1.3.4"],\
