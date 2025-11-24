@@ -29,15 +29,12 @@ export class LedgerSigner extends ethers.Signer {
     private constructor(
         public readonly provider: ethers.providers.Provider,
         private readonly ethApp: Eth,
-        public readonly path: string
+        public readonly path: string,
     ) {
         super();
     }
 
-    public static async create(
-        provider: ethers.providers.Provider,
-        path = defaultPath
-    ) {
+    public static async create(provider: ethers.providers.Provider, path = defaultPath) {
         if (!createEthApp) {
             createEthApp = true;
             const transport = await Transport.open(undefined);
@@ -50,9 +47,7 @@ export class LedgerSigner extends ethers.Signer {
                 await sleep(100);
                 if (ethApp !== undefined) break;
                 if (i === 1199) {
-                    throw new Error(
-                        "Timed out while waiting for transport to open."
-                    );
+                    throw new Error("Timed out while waiting for transport to open.");
                 }
             }
         }
@@ -60,9 +55,7 @@ export class LedgerSigner extends ethers.Signer {
         return new LedgerSigner(provider, ethApp, path);
     }
 
-    private async _retry<T = any>(
-        operation: (eth: Eth) => Promise<T>
-    ): Promise<T> {
+    private async _retry<T = any>(operation: (eth: Eth) => Promise<T>): Promise<T> {
         // Wait up to 120 seconds
         for (let i = 0; i < 1200; i++) {
             try {
@@ -87,39 +80,31 @@ export class LedgerSigner extends ethers.Signer {
         if (cachedAddress !== undefined) return cachedAddress;
 
         const account = await this._retry((eth) => eth.getAddress(this.path));
-        const address = addressCache[this.path] = ethers.utils.getAddress(account.address);
+        const address = (addressCache[this.path] = ethers.utils.getAddress(account.address));
         return address;
     }
 
-    public async signMessage(
-        message: ethers.utils.Bytes | string
-    ): Promise<string> {
+    public async signMessage(message: ethers.utils.Bytes | string): Promise<string> {
         if (typeof message === "string") {
             message = ethers.utils.toUtf8Bytes(message);
         }
 
         const messageHex = ethers.utils.hexlify(message).substring(2);
 
-        const sig = await this._retry((eth) =>
-            eth.signPersonalMessage(this.path, messageHex)
-        );
+        const sig = await this._retry((eth) => eth.signPersonalMessage(this.path, messageHex));
         sig.r = `0x${sig.r}`;
         sig.s = `0x${sig.s}`;
         return ethers.utils.joinSignature(sig);
     }
 
-    public async signTransaction(
-        transaction: ethers.providers.TransactionRequest
-    ): Promise<string> {
+    public async signTransaction(transaction: ethers.providers.TransactionRequest): Promise<string> {
         const tx = await ethers.utils.resolveProperties(transaction);
         // We create a separate object because the `nonce` field should be a number
         const baseTx: ethers.utils.UnsignedTransaction = {
             chainId: tx.chainId,
             data: tx.data,
             gasLimit: tx.gasLimit,
-            nonce: tx.nonce
-                ? ethers.BigNumber.from(tx.nonce).toNumber()
-                : undefined,
+            nonce: tx.nonce ? ethers.BigNumber.from(tx.nonce).toNumber() : undefined,
             to: tx.to,
             value: tx.value,
             type: tx.type,
@@ -132,16 +117,8 @@ export class LedgerSigner extends ethers.Signer {
             }),
         };
 
-        const unsignedTx = ethers.utils
-            .serializeTransaction(baseTx)
-            .substring(2);
-        const sig = await this._retry((eth) =>
-            eth.clearSignTransaction(
-                this.path,
-                unsignedTx,
-                this.resolutionConfig
-            )
-        );
+        const unsignedTx = ethers.utils.serializeTransaction(baseTx).substring(2);
+        const sig = await this._retry((eth) => eth.clearSignTransaction(this.path, unsignedTx, this.resolutionConfig));
 
         return ethers.utils.serializeTransaction(baseTx, {
             v: ethers.BigNumber.from(`0x${sig.v}`).toNumber(),

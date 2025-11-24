@@ -15,19 +15,16 @@ let solApp: SolanaApp;
 const addressCache: Record<string, Buffer | undefined> = {};
 
 export class SolanaLedgerSigner {
-
     private constructor(
         private readonly solApp: SolanaApp,
-        public readonly path: string
+        public readonly path: string,
     ) {}
 
     /**
      * @param path Must be a string describing the derivation path that follows this format roughly:
      * `44'/501'/0'/0'`. Note that there is no `m` to mark the root node.
      */
-    public static async create(
-        path: string
-    ) {
+    public static async create(path: string) {
         if (!createSolApp) {
             createSolApp = true;
             const transport = await Transport.open(undefined);
@@ -40,9 +37,7 @@ export class SolanaLedgerSigner {
                 await sleep(100);
                 if (solApp !== undefined) break;
                 if (i === 1199) {
-                    throw new Error(
-                        "Timed out while waiting for transport to open."
-                    );
+                    throw new Error("Timed out while waiting for transport to open.");
                 }
             }
         }
@@ -50,9 +45,7 @@ export class SolanaLedgerSigner {
         return new SolanaLedgerSigner(solApp, path);
     }
 
-    private async _retry<T = any>(
-        operation: (eth: SolanaApp) => Promise<T>
-    ): Promise<T> {
+    private async _retry<T = any>(operation: (eth: SolanaApp) => Promise<T>): Promise<T> {
         // Wait up to 120 seconds
         for (let i = 0; i < 1200; i++) {
             try {
@@ -76,22 +69,18 @@ export class SolanaLedgerSigner {
         const cachedAddress = addressCache[this.path];
         if (cachedAddress !== undefined) return Buffer.copyBytesFrom(cachedAddress);
 
-        const {address} = await this._retry((sol) => sol.getAddress(this.path));
+        const { address } = await this._retry((sol) => sol.getAddress(this.path));
         addressCache[this.path] = address;
         return Buffer.copyBytesFrom(address);
     }
 
-    public async signMessage(
-        message: Buffer
-    ): Promise<Buffer> {
-        const {signature} = await this._retry((sol) => sol.signOffchainMessage(this.path, message));
+    public async signMessage(message: Buffer): Promise<Buffer> {
+        const { signature } = await this._retry((sol) => sol.signOffchainMessage(this.path, message));
         return signature;
     }
 
-    public async signTransaction(
-        transaction: Buffer
-    ): Promise<Buffer> {
-        const {signature} = await this._retry((sol) => sol.signTransaction(this.path, transaction));
+    public async signTransaction(transaction: Buffer): Promise<Buffer> {
+        const { signature } = await this._retry((sol) => sol.signTransaction(this.path, transaction));
         return signature;
     }
 }
