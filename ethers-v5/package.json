@@ -6,8 +6,8 @@
   "author": "",
   "dependencies": {
     "@ledgerhq/hw-app-eth": "6.36.1",
-    "@ledgerhq/hw-transport": "6.30.6",
-    "@ledgerhq/hw-transport-node-hid": "6.28.6",
+    "@ledgerhq/hw-transport": "6.31.13",
+    "@ledgerhq/hw-transport-node-hid": "6.29.14",
     "ethers": "^5.8.0"
   },
   "description": "Ledger signer for ethers v5.",
