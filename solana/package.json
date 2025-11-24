@@ -19,7 +19,7 @@
     "test": "exit 1"
   },
   "devDependencies": {
-    "@ledgerhq/types-cryptoassets": "7.12.0",
+    "@ledgerhq/types-cryptoassets": "7.30.0",
     "@ledgerhq/types-devices": "6.27.0",
     "@solana/web3.js": "^1.98.4",
     "@types/node": "^22.19.1",

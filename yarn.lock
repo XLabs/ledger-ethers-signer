@@ -1215,14 +1215,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/types-cryptoassets@npm:7.12.0":
-  version: 7.12.0
-  resolution: "@ledgerhq/types-cryptoassets@npm:7.12.0"
-  checksum: 10c0/64154be3852ae946791158da217288ab604b1cf9b1005880b6a986462551894bc82e8fb5bea92da9a07be5b85ebf7150f897341606407222801ce9417eb21633
-  languageName: node
-  linkType: hard
-
-"@ledgerhq/types-cryptoassets@npm:^7.12.0":
+"@ledgerhq/types-cryptoassets@npm:7.30.0, @ledgerhq/types-cryptoassets@npm:^7.12.0":
   version: 7.30.0
   resolution: "@ledgerhq/types-cryptoassets@npm:7.30.0"
   checksum: 10c0/51c7b5020dfb08d5e8291e56630a2537e82288b781f41741c48d0dc5cf9270512d784c404fa7818db6aa302ae646c29aebf42ea75937aa8d82a8e8cfe1175b98
@@ -1483,7 +1476,7 @@ __metadata:
     "@ledgerhq/hw-app-eth": "npm:6.36.1"
     "@ledgerhq/hw-transport": "npm:6.31.13"
     "@ledgerhq/hw-transport-node-hid": "npm:6.29.14"
-    "@ledgerhq/types-cryptoassets": "npm:7.12.0"
+    "@ledgerhq/types-cryptoassets": "npm:7.30.0"
     "@ledgerhq/types-devices": "npm:6.27.0"
     "@types/node": "npm:^22.19.1"
     "@types/node-hid": "npm:^1.3.4"
@@ -1501,7 +1494,7 @@ __metadata:
     "@ledgerhq/hw-app-solana": "npm:7.1.6"
     "@ledgerhq/hw-transport": "npm:6.31.13"
     "@ledgerhq/hw-transport-node-hid": "npm:6.29.14"
-    "@ledgerhq/types-cryptoassets": "npm:7.12.0"
+    "@ledgerhq/types-cryptoassets": "npm:7.30.0"
     "@ledgerhq/types-devices": "npm:6.27.0"
     "@solana/web3.js": "npm:^1.98.4"
     "@types/node": "npm:^22.19.1"
@@ -1519,7 +1512,7 @@ __metadata:
     "@ledgerhq/hw-app-eth": "npm:6.36.1"
     "@ledgerhq/hw-transport": "npm:6.31.13"
     "@ledgerhq/hw-transport-node-hid": "npm:6.29.14"
-    "@ledgerhq/types-cryptoassets": "npm:7.12.0"
+    "@ledgerhq/types-cryptoassets": "npm:7.30.0"
     "@ledgerhq/types-devices": "npm:6.27.0"
     "@types/node": "npm:^22.19.1"
     "@types/node-hid": "npm:^1.3.4"
