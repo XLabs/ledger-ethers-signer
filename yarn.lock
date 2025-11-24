@@ -1116,14 +1116,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/hw-app-solana@npm:7.1.6":
-  version: 7.1.6
-  resolution: "@ledgerhq/hw-app-solana@npm:7.1.6"
+"@ledgerhq/hw-app-solana@npm:7.6.0":
+  version: 7.6.0
+  resolution: "@ledgerhq/hw-app-solana@npm:7.6.0"
   dependencies:
-    "@ledgerhq/errors": "npm:^6.16.4"
-    "@ledgerhq/hw-transport": "npm:^6.30.6"
+    "@ledgerhq/errors": "npm:^6.27.0"
+    "@ledgerhq/hw-transport": "npm:6.31.13"
     bip32-path: "npm:^0.4.2"
-  checksum: 10c0/a2c7fcf038e54e0e622611596f04aa290e2755007f2c277305fcb4af2edfafd2df81484877231489ffb0784636f50f6da2d99da609dd7fda1be2f1618afbe7e3
+  checksum: 10c0/2de56fdc0ab6bbfd313d8d700fa00237e2fdb7813fb7845edb4613e6761fc5b5234d0c07d4dab0289e27b9b121db36ee712bdcebd8dbf70c4778cdd3e22e28ac
   languageName: node
   linkType: hard
 
@@ -1491,7 +1491,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@xlabs-xyz/ledger-signer-solana@workspace:solana"
   dependencies:
-    "@ledgerhq/hw-app-solana": "npm:7.1.6"
+    "@ledgerhq/hw-app-solana": "npm:7.6.0"
     "@ledgerhq/hw-transport": "npm:6.31.13"
     "@ledgerhq/hw-transport-node-hid": "npm:6.29.14"
     "@ledgerhq/types-cryptoassets": "npm:7.30.0"

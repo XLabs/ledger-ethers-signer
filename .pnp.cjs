@@ -1237,12 +1237,12 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@ledgerhq/hw-app-solana", [\
-      ["npm:7.1.6", {\
-        "packageLocation": "../../../../.yarn/berry/cache/@ledgerhq-hw-app-solana-npm-7.1.6-2f4c5c1328-10c0.zip/node_modules/@ledgerhq/hw-app-solana/",\
+      ["npm:7.6.0", {\
+        "packageLocation": "../../../../.yarn/berry/cache/@ledgerhq-hw-app-solana-npm-7.6.0-52c36fe834-10c0.zip/node_modules/@ledgerhq/hw-app-solana/",\
         "packageDependencies": [\
-          ["@ledgerhq/errors", "npm:6.16.4"],\
-          ["@ledgerhq/hw-app-solana", "npm:7.1.6"],\
-          ["@ledgerhq/hw-transport", "npm:6.30.6"],\
+          ["@ledgerhq/errors", "npm:6.27.0"],\
+          ["@ledgerhq/hw-app-solana", "npm:7.6.0"],\
+          ["@ledgerhq/hw-transport", "npm:6.31.13"],\
           ["bip32-path", "npm:0.4.2"]\
         ],\
         "linkType": "HARD"\
@@ -1344,13 +1344,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@ledgerhq/types-cryptoassets", [\
-      ["npm:7.12.0", {\
-        "packageLocation": "../../../../.yarn/berry/cache/@ledgerhq-types-cryptoassets-npm-7.12.0-c7b80c8efb-10c0.zip/node_modules/@ledgerhq/types-cryptoassets/",\
-        "packageDependencies": [\
-          ["@ledgerhq/types-cryptoassets", "npm:7.12.0"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:7.30.0", {\
         "packageLocation": "../../../../.yarn/berry/cache/@ledgerhq-types-cryptoassets-npm-7.30.0-8153a8f905-10c0.zip/node_modules/@ledgerhq/types-cryptoassets/",\
         "packageDependencies": [\
@@ -1666,7 +1659,7 @@ const RAW_RUNTIME_STATE =
           ["@ledgerhq/hw-app-eth", "npm:6.36.1"],\
           ["@ledgerhq/hw-transport", "npm:6.31.13"],\
           ["@ledgerhq/hw-transport-node-hid", "npm:6.29.14"],\
-          ["@ledgerhq/types-cryptoassets", "npm:7.12.0"],\
+          ["@ledgerhq/types-cryptoassets", "npm:7.30.0"],\
           ["@ledgerhq/types-devices", "npm:6.27.0"],\
           ["@types/node", "npm:22.19.1"],\
           ["@types/node-hid", "npm:1.3.4"],\
@@ -1685,7 +1678,7 @@ const RAW_RUNTIME_STATE =
           ["@ledgerhq/hw-app-eth", "npm:6.36.1"],\
           ["@ledgerhq/hw-transport", "npm:6.31.13"],\
           ["@ledgerhq/hw-transport-node-hid", "npm:6.29.14"],\
-          ["@ledgerhq/types-cryptoassets", "npm:7.12.0"],\
+          ["@ledgerhq/types-cryptoassets", "npm:7.30.0"],\
           ["@ledgerhq/types-devices", "npm:6.27.0"],\
           ["@types/node", "npm:22.19.1"],\
           ["@types/node-hid", "npm:1.3.4"],\
@@ -1702,10 +1695,10 @@ const RAW_RUNTIME_STATE =
       ["workspace:solana", {\
         "packageLocation": "./solana/",\
         "packageDependencies": [\
-          ["@ledgerhq/hw-app-solana", "npm:7.1.6"],\
+          ["@ledgerhq/hw-app-solana", "npm:7.6.0"],\
           ["@ledgerhq/hw-transport", "npm:6.31.13"],\
           ["@ledgerhq/hw-transport-node-hid", "npm:6.29.14"],\
-          ["@ledgerhq/types-cryptoassets", "npm:7.12.0"],\
+          ["@ledgerhq/types-cryptoassets", "npm:7.30.0"],\
           ["@ledgerhq/types-devices", "npm:6.27.0"],\
           ["@solana/web3.js", "npm:1.98.4"],\
           ["@types/node", "npm:22.19.1"],\

@@ -5,7 +5,7 @@
   "types": "./lib/index.d.ts",
   "author": "",
   "dependencies": {
-    "@ledgerhq/hw-app-solana": "7.1.6",
+    "@ledgerhq/hw-app-solana": "7.6.0",
     "@ledgerhq/hw-transport": "6.31.13",
     "@ledgerhq/hw-transport-node-hid": "6.29.14"
   },
