@@ -9,6 +9,10 @@ function sleep(duration: number): Promise<void> {
 
 let createSolApp = false;
 let solApp: SolanaApp;
+// This cache is only valid for a single device.
+// Since we only ever open a connection once and we don't attempt to reconnect,
+// we don't need to handle cache invalidation.
+const addressCache: Record<string, Buffer | undefined> = {};
 
 export class SolanaLedgerSigner {
 
@@ -69,8 +73,12 @@ export class SolanaLedgerSigner {
     }
 
     public async getAddress(): Promise<Buffer> {
+        const cachedAddress = addressCache[this.path];
+        if (cachedAddress !== undefined) return Buffer.copyBytesFrom(cachedAddress);
+
         const {address} = await this._retry((sol) => sol.getAddress(this.path));
-        return address;
+        addressCache[this.path] = address;
+        return Buffer.copyBytesFrom(address);
     }
 
     public async signMessage(
