@@ -5,7 +5,7 @@
   "types": "./lib/index.d.ts",
   "author": "",
   "dependencies": {
-    "@ledgerhq/hw-app-eth": "6.36.1",
+    "@ledgerhq/hw-app-eth": "6.47.1",
     "@ledgerhq/hw-transport": "6.31.13",
     "@ledgerhq/hw-transport-node-hid": "6.29.14",
     "ethers": "^5.8.0"
