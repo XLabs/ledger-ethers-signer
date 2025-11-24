@@ -16,6 +16,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc --build tsconfig.json",
+    "test:transfer": "tsx test/testSignTx.ts",
     "test": "exit 1"
   },
   "devDependencies": {

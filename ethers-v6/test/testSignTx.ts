@@ -3,7 +3,7 @@ import {JsonRpcProvider} from "ethers";
 
 
 async function main() {
-  const provider = new JsonRpcProvider("https://rpc.sepolia.org", undefined, {
+  const provider = new JsonRpcProvider("https://ethereum-sepolia-rpc.publicnode.com", undefined, {
     staticNetwork: true
   });
   const derivationPath = "m/44'/60'/0'/0/0";
