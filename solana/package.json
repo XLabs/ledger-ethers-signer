@@ -1,32 +1,32 @@
 {
   "name": "@xlabs-xyz/ledger-signer-solana",
+  "version": "0.0.2",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "author": "",
   "dependencies": {
-    "@ledgerhq/hw-app-solana": "7.1.4",
-    "@ledgerhq/hw-transport": "6.30.4",
-    "@ledgerhq/hw-transport-node-hid": "6.28.4"
+    "@ledgerhq/hw-app-solana": "7.6.0",
+    "@ledgerhq/hw-transport": "6.31.13",
+    "@ledgerhq/hw-transport-node-hid": "6.29.14"
   },
   "description": "Ledger signer for @solana/web3.js.",
   "keywords": [
-    "Ethereum",
-    "ethers"
+    "Solana"
   ],
   "license": "MIT",
   "scripts": {
     "build": "tsc --build tsconfig.json",
+    "test:transfer": "tsx test/testSignTx.ts",
     "test": "exit 1"
   },
-  "version": "0.0.1",
   "devDependencies": {
-    "@ledgerhq/types-cryptoassets": "7.10.0",
-    "@ledgerhq/types-devices": "6.23.0",
-    "@solana/web3.js": "^1.91.0",
-    "@types/node": "^20.12.12",
-    "@types/node-hid": "1.3.4",
-    "prettier": "^3.2.5",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "@ledgerhq/types-cryptoassets": "7.30.0",
+    "@ledgerhq/types-devices": "6.27.0",
+    "@solana/web3.js": "^1.98.4",
+    "@types/node": "^22.19.1",
+    "@types/node-hid": "^1.3.4",
+    "prettier": "^3.6.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
   }
 }

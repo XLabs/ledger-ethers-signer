@@ -1,3 +1,1 @@
-export {
-    SolanaLedgerSigner
-} from "./ledger";
+export { SolanaLedgerSigner } from "./ledger";

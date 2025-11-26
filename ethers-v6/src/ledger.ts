@@ -29,6 +29,10 @@ function sleep(duration: number): Promise<void> {
 
 let createEthApp = false;
 let ethApp: Eth;
+// This cache is only valid for a single device.
+// Since we only ever open a connection once and we don't attempt to reconnect,
+// we don't need to handle cache invalidation.
+const addressCache: Record<string, string | undefined> = {};
 
 /**
  *  A **LedgerSigner** provides access to a Ledger Hardware Wallet
@@ -77,9 +81,7 @@ export class LedgerSigner extends AbstractSigner {
                 await sleep(100);
                 if (ethApp !== undefined) break;
                 if (i === 1199) {
-                    throw new Error(
-                        "Timed out while waiting for transport to open.",
-                    );
+                    throw new Error("Timed out while waiting for transport to open.");
                 }
             }
         }
@@ -95,15 +97,18 @@ export class LedgerSigner extends AbstractSigner {
     //     return new LedgerSigner(this.#transport, this.provider, path);
     // }
 
-    private async _retry<T = any>(
-        operation: (eth: Eth) => Promise<T>,
-    ): Promise<T> {
+    private async _retry<T = any>(operation: (eth: Eth) => Promise<T>): Promise<T> {
         // Wait up to 120 seconds
         for (let i = 0; i < 1200; i++) {
             try {
                 const result = await operation(this.ethApp);
                 return result;
             } catch (error: any) {
+                // TODO: check if this error type is exported in some ledger library.
+                if (error?.statusCode === 27404) {
+                    // TODO: define a custom error type for this?
+                    throw new Error(`Ledger device is not running Ethereum App`);
+                }
                 // `TransportLocked` indicates that a request is being processed.
                 // It allows defining a critical section in the driver.
                 // We only need to retry the request until the driver isn't busy servicing another request.
@@ -118,32 +123,20 @@ export class LedgerSigner extends AbstractSigner {
     }
 
     public async getAddress(): Promise<string> {
-        try {
-            const account = await this._retry((eth) =>
-                eth.getAddress(this.path),
-            );
-            return getAddress(account.address);
-        } catch (error) {
-            // TODO: check if this error type is exported in some ledger library.
-            if ((error as any)?.statusCode === 27404) {
-                // TODO: define a custom error type for this?
-                throw new Error(`Ledger device is not running Ethereum App`);
-            }
+        const cachedAddress = addressCache[this.path];
+        if (cachedAddress !== undefined) return cachedAddress;
 
-            throw error;
-        }
+        const account = await this._retry((eth) => eth.getAddress(this.path));
+        const address = (addressCache[this.path] = getAddress(account.address));
+        return address;
     }
 
     async signTransaction(txRequest: TransactionRequest): Promise<string> {
         // Replace any Addressable or ENS name with an address
         txRequest = copyRequest(txRequest);
         const { to, from } = await resolveProperties({
-            to: txRequest.to
-                ? resolveAddress(txRequest.to, this.provider)
-                : undefined,
-            from: txRequest.from
-                ? resolveAddress(txRequest.from, this.provider)
-                : undefined,
+            to: txRequest.to ? resolveAddress(txRequest.to, this.provider) : undefined,
+            from: txRequest.from ? resolveAddress(txRequest.from, this.provider) : undefined,
         });
 
         if (to != null) {
@@ -157,9 +150,7 @@ export class LedgerSigner extends AbstractSigner {
         const rawTx = tx.unsignedSerialized.substring(2);
 
         // Ask the Ledger to sign for us
-        const sig = await this._retry((eth) =>
-            eth.clearSignTransaction(this.path, rawTx, this.resolutionConfig),
-        );
+        const sig = await this._retry((eth) => eth.clearSignTransaction(this.path, rawTx, this.resolutionConfig));
 
         // Normalize the signature for Ethers
         sig.v = "0x" + sig.v;
@@ -178,9 +169,7 @@ export class LedgerSigner extends AbstractSigner {
         }
 
         const messageHex = hexlify(message).substring(2);
-        const sig = await this._retry((eth) =>
-            eth.signPersonalMessage(this.path, messageHex),
-        );
+        const sig = await this._retry((eth) => eth.signPersonalMessage(this.path, messageHex));
 
         // Normalize the signature for Ethers
         sig.r = "0x" + sig.r;
@@ -196,27 +185,16 @@ export class LedgerSigner extends AbstractSigner {
         value: Record<string, any>,
     ): Promise<string> {
         // Populate any ENS names
-        const populated = await TypedDataEncoder.resolveNames(
-            domain,
-            types,
-            value,
-            (name: string) => {
-                return resolveAddress(name, this.provider) as Promise<string>;
-            },
-        );
+        const populated = await TypedDataEncoder.resolveNames(domain, types, value, (name: string) => {
+            return resolveAddress(name, this.provider) as Promise<string>;
+        });
 
-        const payload = TypedDataEncoder.getPayload(
-            populated.domain,
-            types,
-            populated.value,
-        );
+        const payload = TypedDataEncoder.getPayload(populated.domain, types, populated.value);
 
         let sig: { r: string; s: string; v: number };
         try {
             // Try signing the EIP-712 message
-            sig = await this._retry((eth) =>
-                eth.signEIP712Message(this.path, payload),
-            );
+            sig = await this._retry((eth) => eth.signEIP712Message(this.path, payload));
         } catch (error) {
             // TODO: what error code is this? try to import it from library
             if ((error as any)?.statusCode !== 27904) throw error;
@@ -225,11 +203,7 @@ export class LedgerSigner extends AbstractSigner {
             const domainHash = TypedDataEncoder.hashDomain(domain);
             const valueHash = TypedDataEncoder.from(types).hash(value);
             sig = await this._retry((eth) =>
-                eth.signEIP712HashedMessage(
-                    this.path,
-                    domainHash.substring(2),
-                    valueHash.substring(2),
-                ),
+                eth.signEIP712HashedMessage(this.path, domainHash.substring(2), valueHash.substring(2)),
             );
         }
 

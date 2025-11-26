@@ -1,3 +1,1 @@
-export {
-    LedgerSigner
-} from "./ledger";
+export { LedgerSigner } from "./ledger";
