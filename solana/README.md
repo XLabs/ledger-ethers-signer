@@ -3,13 +3,13 @@
 This is meant to be a basic Solana signer for ledger hardware wallets.
 
 Goals:
-- Sign EVM transactions on node.js.
-- Sign EVM messages on node.js.
+- Sign Solana transactions on node.js.
+- Sign Solana messages on node.js.
 
 Non-goals:
-- Sign EVM transactions or messages on browsers.
+- Sign Solana transactions or messages on browsers.
 
-Right now, signing EVM messages is untested so it may not work.
+Right now, signing Solana messages is untested so it may not work.
 
 ## Usage
 
