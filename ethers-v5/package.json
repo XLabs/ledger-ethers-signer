@@ -1,14 +1,14 @@
 {
   "name": "@xlabs-xyz/ledger-signer",
   "version": "0.0.6",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "main": "./lib/ledger.js",
+  "types": "./lib/ledger.d.ts",
   "author": "",
   "dependencies": {
     "@ledgerhq/hw-app-eth": "6.47.1",
     "@ledgerhq/hw-transport": "6.31.13",
     "@ledgerhq/hw-transport-node-hid": "6.29.14",
-    "ethers": "^5.8.0"
+    "ethers": "5.8.0"
   },
   "description": "Ledger signer for ethers v5.",
   "keywords": [
