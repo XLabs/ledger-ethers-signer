@@ -1,8 +1,8 @@
 {
   "name": "@xlabs-xyz/ledger-signer-solana",
   "version": "0.0.2",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "main": "./lib/ledger.js",
+  "types": "./lib/ledger.d.ts",
   "author": "",
   "dependencies": {
     "@ledgerhq/hw-app-solana": "7.6.0",
