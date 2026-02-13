@@ -18,6 +18,7 @@ import {
 } from "ethers";
 import Eth from "@ledgerhq/hw-app-eth";
 import Transport from "@ledgerhq/hw-transport-node-hid";
+import { Bip32Path, parseBip32Path } from "@xlabs-xyz/ledger-signer-common";
 
 const defaultPath = "m/44'/60'/0'/0/0";
 
@@ -69,6 +70,8 @@ export class LedgerSigner extends AbstractSigner {
     }
 
     public static async create(provider: Provider | null, path = defaultPath) {
+        path = parseBip32Path(path).normalized;
+
         if (!createEthApp) {
             createEthApp = true;
             const transport = await Transport.open(undefined);

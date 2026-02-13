@@ -1,4 +1,4 @@
-import { SolanaLedgerSigner } from "../src";
+import { SolanaLedgerSigner } from "../src/ledger";
 import { Connection, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
 
 async function main() {
