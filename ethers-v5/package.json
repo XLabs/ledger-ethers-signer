@@ -8,6 +8,7 @@
     "@ledgerhq/hw-app-eth": "6.47.1",
     "@ledgerhq/hw-transport": "6.31.13",
     "@ledgerhq/hw-transport-node-hid": "6.29.14",
+    "@xlabs-xyz/ledger-signer-common": "workspace:*",
     "ethers": "5.8.0"
   },
   "description": "Ledger signer for ethers v5.",

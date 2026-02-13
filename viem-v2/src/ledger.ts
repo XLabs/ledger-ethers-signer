@@ -21,18 +21,11 @@ import {
 } from "viem";
 import Eth from "@ledgerhq/hw-app-eth";
 import Transport from "@ledgerhq/hw-transport-node-hid";
-import { Bip32Path, Bip44PathIndices, parseBip32Path } from "@xlabs-xyz/ledger-signer-common";
+import { Bip32Path, Bip44PathIndices, sleep, parseBip32Path, retry } from "@xlabs-xyz/ledger-signer-common";
 
 const defaultPath = "m/44'/60'/0'/0/0";
 
-function sleep(duration: number): Promise<void> {
-    return new Promise((resolve) => {
-        setTimeout(resolve, duration);
-    });
-}
-
 let createEthApp = false;
-let ethApp: Eth;
 
 interface CacheAccount {
     address: Address;
@@ -113,19 +106,21 @@ export class LedgerAccount implements LedgerAccountT {
         }
     }
 
+    public static app: Eth;
+
     public static async create(path = defaultPath) {
         const bip32Path = parseBip32Path(path);
         if (!createEthApp) {
             createEthApp = true;
             const transport = await Transport.open(undefined);
-            ethApp = new Eth(transport);
+            this.app = new Eth(transport);
             // Check that the connection is working
-            await ethApp.getAppConfiguration();
-        } else if (ethApp === undefined) {
+            await this.app.getAppConfiguration();
+        } else if (this.app === undefined) {
             // The transport is in the process of being created
             for (let i = 0; i < 1200; i++) {
                 await sleep(100);
-                if (ethApp !== undefined) break;
+                if (this.app !== undefined) break;
                 if (i === 1199) {
                     throw new Error("Timed out while waiting for transport to open.");
                 }
@@ -136,30 +131,13 @@ export class LedgerAccount implements LedgerAccountT {
         return new LedgerAccount(address, publicKey, bip32Path);
     }
 
-    private static async retry<T = any>(operation: (eth: Eth) => Promise<T>): Promise<T> {
-        // Wait up to 120 seconds
-        for (let i = 0; i < 1200; i++) {
-            try {
-                const result = await operation(ethApp);
-                return result;
-            } catch (error: any) {
-                // TODO: check if this error type is exported in some ledger library.
-                if (error?.statusCode === 27404) {
-                    // TODO: define a custom error type for this?
-                    throw new Error(`Ledger device is not running Ethereum App`);
-                }
-                // `TransportLocked` indicates that a request is being processed.
-                // It allows defining a critical section in the driver.
-                // We only need to retry the request until the driver isn't busy servicing another request.
-                if (error?.id !== "TransportLocked") {
-                    throw error;
-                }
-            }
-            await sleep(100);
+    private static readonly retry = retry(this, (error) => {
+        // TODO: check if this error type is exported in some ledger library.
+        if (error?.statusCode === 27404) {
+            // TODO: define a custom error type for this?
+            throw new Error(`Ledger device is not running Ethereum App`);
         }
-
-        throw new Error("timeout");
-    }
+    });
 
     /**
      *  Returns a new LedgerAccount connected via the same transport
@@ -170,16 +148,14 @@ export class LedgerAccount implements LedgerAccountT {
     // }
 
     public static async getAccount(path: string) {
-        const cachedAddress = accountCache[path];
-        if (cachedAddress !== undefined) return cachedAddress;
+        const cachedAccount = accountCache[path];
+        if (cachedAccount !== undefined) return cachedAccount;
 
         const account = await this.retry((eth) => eth.getAddress(path));
-        const cacheAccount = {
+        return accountCache[path] = {
             address: getAddress(account.address),
             publicKey: `0x${account.publicKey}`,
-        } satisfies CacheAccount;
-        accountCache[path] = cacheAccount;
-        return cacheAccount;
+        };
     }
 
     async signTransaction<
@@ -189,7 +165,8 @@ export class LedgerAccount implements LedgerAccountT {
         const serializer = options?.serializer ?? serializeTransaction;
 
         const signableTransaction = (() => {
-            // For EIP-4844 Transactions, we want to sign the transaction payload body (tx_payload_body) without the sidecars (ie. without the network wrapper).
+            // For EIP-4844 Transactions, we want to sign the transaction payload body (tx_payload_body)
+            // without the sidecars (ie. without the network wrapper).
             // See: https://github.com/ethereum/EIPs/blob/e00f4daa66bd56e2dbd5f1d36d09fd613811a48b/EIPS/eip-4844.md#networking
             if (transaction.type === 'eip4844')
                 return {
@@ -200,7 +177,9 @@ export class LedgerAccount implements LedgerAccountT {
         })();
 
         const serializedTx = (await serializer(signableTransaction)).substring(2);
-        const signature = await ethApp.clearSignTransaction(this.path, serializedTx, LedgerAccount.resolutionConfig);
+        const signature = await LedgerAccount.retry(
+            (eth) => eth.clearSignTransaction(this.path, serializedTx, LedgerAccount.resolutionConfig)
+        );
         return (await serializer(
             transaction,
             {

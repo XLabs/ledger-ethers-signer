@@ -51,3 +51,38 @@ export function parseBip32Path(path: string): Bip32Path {
     return { normalized, indices };
 }
 
+export function sleep(duration: number): Promise<void> {
+    return new Promise((resolve) => {
+        setTimeout(resolve, duration);
+    });
+}
+
+interface AppContainer<App> {
+    app: App;
+}
+
+// Currying the ledger application here allows creation of a function specific to a signer implementation.
+// Using the AppContainer interface guards against the pitfall of passing in a bare reference that is then evaluated eagerly to undefined
+// and thus breaks lazy initialization of the ledger application.
+export const retry = <App>(container: AppContainer<App>, errorHook?: (error: any) => void) =>
+    async <Result = any>(operation: (app: App) => Promise<Result>): Promise<Result> => {
+        // Wait up to 120 seconds
+        for (let i = 0; i < 1200; i++) {
+            try {
+                const result = await operation(container.app);
+                return result;
+            } catch (error: any) {
+                // Let signer implementation inspect error and throw early
+                if (errorHook !== undefined) errorHook(error);
+                // `TransportLocked` indicates that a request is being processed.
+                // It allows defining a critical section in the driver.
+                // We only need to retry the request until the driver isn't busy servicing another request.
+                if (error?.id !== "TransportLocked") {
+                    throw error;
+                }
+            }
+            await sleep(100);
+        }
+
+        throw new Error("timeout");
+    }

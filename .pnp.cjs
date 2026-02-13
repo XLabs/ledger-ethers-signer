@@ -1530,6 +1530,7 @@ const RAW_RUNTIME_STATE =
           ["@types/node", "npm:24.10.13"],\
           ["@types/node-hid", "npm:1.3.4"],\
           ["@xlabs-xyz/ledger-signer", "workspace:ethers-v5"],\
+          ["@xlabs-xyz/ledger-signer-common", "workspace:common"],\
           ["ethers", "npm:5.8.0"],\
           ["prettier", "npm:3.8.1"],\
           ["typescript", "patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>::version=5.9.3&hash=5786d5"]\
@@ -1581,6 +1582,7 @@ const RAW_RUNTIME_STATE =
           ["@solana/web3.js", "npm:1.98.4"],\
           ["@types/node", "npm:24.10.13"],\
           ["@types/node-hid", "npm:1.3.4"],\
+          ["@xlabs-xyz/ledger-signer-common", "workspace:common"],\
           ["@xlabs-xyz/ledger-signer-solana", "workspace:solana"],\
           ["prettier", "npm:3.8.1"],\
           ["tsx", "npm:4.21.0"],\
