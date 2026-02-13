@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "outDir": "./lib/",
-    "rootDir": "./src.ts",
-    "lib": ["es2024"],
+    "rootDir": "./src",
+    "lib": ["es2024", "DOM"],
     "module": "CommonJS",
     "target": "es2024",
     "esModuleInterop": true,
@@ -10,10 +10,14 @@
     "declaration": true,
     "declarationMap": true,
     "composite": true,
+    "noErrorTruncation": true,
     "moduleResolution": "node"
   },
   "exclude": [],
   "include": [
-    "./src.ts/*"
+    "./src"
+  ],
+  "references": [
+    { "path": "../common" }
   ]
 }

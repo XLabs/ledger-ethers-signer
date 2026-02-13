@@ -1,0 +1,21 @@
+{
+  "name": "@xlabs-xyz/ledger-signer-common",
+  "version": "0.0.1",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "author": "snale",
+  "description": "Ledger signer common utilities.",
+  "keywords": [
+    "Ethereum",
+    "ethers"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc --build tsconfig.json",
+    "test": "exit 1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.13",
+    "typescript": "^5.9.3"
+  }
+}

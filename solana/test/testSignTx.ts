@@ -1,9 +1,9 @@
-import { SolanaLedgerSigner } from "../src";
+import { SolanaLedgerSigner } from "../src/ledger";
 import { Connection, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
 
 async function main() {
     const connection = new Connection("https://api.devnet.solana.com", "confirmed");
-    const derivationPath = "44'/501'/0'/0'";
+    const derivationPath = "m/44'/501'/0'/0'";
     const signer = await SolanaLedgerSigner.create(derivationPath);
 
     // get sender pubkey for transfer instruction

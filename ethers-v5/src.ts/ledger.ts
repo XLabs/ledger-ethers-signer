@@ -1,17 +1,11 @@
 import { ethers } from "ethers";
 import Eth from "@ledgerhq/hw-app-eth";
 import Transport from "@ledgerhq/hw-transport-node-hid";
+import { retry, sleep, parseBip32Path } from "@xlabs-xyz/ledger-signer-common";
 
 const defaultPath = "m/44'/60'/0'/0/0";
 
-function sleep(duration: number): Promise<void> {
-    return new Promise((resolve) => {
-        setTimeout(resolve, duration);
-    });
-}
-
 let createEthApp = false;
-let ethApp: Eth;
 // This cache is only valid for a single device.
 // Since we only ever open a connection once and we don't attempt to reconnect,
 // we don't need to handle cache invalidation.
@@ -34,52 +28,45 @@ export class LedgerSigner extends ethers.Signer {
         super();
     }
 
+
+    public static app: Eth;
+
     public static async create(provider: ethers.providers.Provider, path = defaultPath) {
+        path = parseBip32Path(path).normalized;
+
         if (!createEthApp) {
             createEthApp = true;
             const transport = await Transport.open(undefined);
-            ethApp = new Eth(transport);
+            this.app = new Eth(transport);
             // Check that the connection is working
-            await ethApp.getAppConfiguration();
-        } else if (ethApp === undefined) {
+            await this.app.getAppConfiguration();
+        } else if (this.app === undefined) {
             // The transport is in the process of being created
             for (let i = 0; i < 1200; i++) {
                 await sleep(100);
-                if (ethApp !== undefined) break;
+                if (this.app !== undefined) break;
                 if (i === 1199) {
                     throw new Error("Timed out while waiting for transport to open.");
                 }
             }
         }
 
-        return new LedgerSigner(provider, ethApp, path);
+        return new LedgerSigner(provider, this.app, path);
     }
 
-    private async _retry<T = any>(operation: (eth: Eth) => Promise<T>): Promise<T> {
-        // Wait up to 120 seconds
-        for (let i = 0; i < 1200; i++) {
-            try {
-                const result = await operation(this.ethApp);
-                return result;
-            } catch (error: any) {
-                // `TransportLocked` indicates that a request is being processed.
-                // It allows defining a critical section in the driver.
-                // We only need to retry the request until the driver isn't busy servicing another request.
-                if (error?.id !== "TransportLocked") {
-                    throw error;
-                }
-            }
-            await sleep(100);
+    private static readonly retry = retry(this, (error) => {
+        // TODO: check if this error type is exported in some ledger library.
+        if (error?.statusCode === 27404) {
+            // TODO: define a custom error type for this?
+            throw new Error(`Ledger device is not running Ethereum App`);
         }
-
-        throw new Error("timeout");
-    }
+    });
 
     public async getAddress(): Promise<string> {
         const cachedAddress = addressCache[this.path];
         if (cachedAddress !== undefined) return cachedAddress;
 
-        const account = await this._retry((eth) => eth.getAddress(this.path));
+        const account = await LedgerSigner.retry((eth) => eth.getAddress(this.path));
         const address = (addressCache[this.path] = ethers.utils.getAddress(account.address));
         return address;
     }
@@ -91,7 +78,7 @@ export class LedgerSigner extends ethers.Signer {
 
         const messageHex = ethers.utils.hexlify(message).substring(2);
 
-        const sig = await this._retry((eth) => eth.signPersonalMessage(this.path, messageHex));
+        const sig = await LedgerSigner.retry((eth) => eth.signPersonalMessage(this.path, messageHex));
         sig.r = `0x${sig.r}`;
         sig.s = `0x${sig.s}`;
         return ethers.utils.joinSignature(sig);
@@ -118,7 +105,9 @@ export class LedgerSigner extends ethers.Signer {
         };
 
         const unsignedTx = ethers.utils.serializeTransaction(baseTx).substring(2);
-        const sig = await this._retry((eth) => eth.clearSignTransaction(this.path, unsignedTx, this.resolutionConfig));
+        const sig = await LedgerSigner.retry(
+            (eth) => eth.clearSignTransaction(this.path, unsignedTx, this.resolutionConfig)
+        );
 
         return ethers.utils.serializeTransaction(baseTx, {
             v: ethers.BigNumber.from(`0x${sig.v}`).toNumber(),
