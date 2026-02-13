@@ -15,6 +15,8 @@ async function main() {
     });
     const account = await LedgerAccount.create();
 
+    console.log(`Address: ${account.address}`);
+
     const walletClient = createWalletClient({
         account,
         chain: sepolia,
