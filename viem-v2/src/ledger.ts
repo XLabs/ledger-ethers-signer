@@ -106,14 +106,14 @@ export class LedgerAccount implements LedgerAccountT {
         }
     }
 
-    public static app: Eth;
+    public static app: Eth.default;
 
     public static async create(path = defaultPath) {
         const bip32Path = parseBip32Path(path);
         if (!createEthApp) {
             createEthApp = true;
-            const transport = await Transport.open(undefined);
-            this.app = new Eth(transport);
+            const transport = await Transport.default.open(undefined);
+            this.app = new Eth.default(transport);
             // Check that the connection is working
             await this.app.getAppConfiguration();
         } else if (this.app === undefined) {

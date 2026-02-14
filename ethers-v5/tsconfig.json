@@ -3,17 +3,19 @@
     "outDir": "./lib/",
     "rootDir": "./src.ts",
     "lib": ["es2024"],
-    "module": "CommonJS",
+    "module": "NodeNext",
     "target": "es2024",
     "esModuleInterop": true,
     "strict": true,
     "declaration": true,
     "declarationMap": true,
-    "composite": true,
-    "moduleResolution": "node"
+    "composite": true
   },
   "exclude": [],
   "include": [
     "./src.ts/*"
+  ],
+  "references": [
+    { "path": "../common" }
   ]
 }
