@@ -1,6 +1,7 @@
 {
   "name": "@xlabs-xyz/ledger-signer-viem-v2",
   "version": "0.0.1",
+  "type": "module",
   "main": "./lib/ledger.js",
   "types": "./lib/ledger.d.ts",
   "author": "snale",

@@ -996,14 +996,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ledgerhq/types-cryptoassets@npm:7.32.0":
+"@ledgerhq/types-cryptoassets@npm:7.32.0, @ledgerhq/types-cryptoassets@npm:^7.32.0":
   version: 7.32.0
   resolution: "@ledgerhq/types-cryptoassets@npm:7.32.0"
   checksum: 10c0/0431afd86687505743771c4804ebb9b839463345b9ee0fecca79f175e60a6fd97ec3a0c23794f1d9409e7cde8ec53aa6e1363f597f1f1325e771904dbe7f1f68
   languageName: node
   linkType: hard
 
-"@ledgerhq/types-devices@npm:6.28.0":
+"@ledgerhq/types-devices@npm:6.28.0, @ledgerhq/types-devices@npm:^6.28.0":
   version: 6.28.0
   resolution: "@ledgerhq/types-devices@npm:6.28.0"
   checksum: 10c0/b8f371da4468dafa692245c27742d76ff707c4fecff5762e1de2121c0b4f5168f646914b546a14761dc50fbfe4f30a25f030e8b327582cbcd9751072e7d1b8ec
@@ -1296,6 +1296,15 @@ __metadata:
   dependencies:
     undici-types: "npm:~7.16.0"
   checksum: 10c0/4ff0b9b060b5477c0fec5b11a176f294be588104ab546295db65b17a92ba0a6077b52ad92dd3c0d2154198c7f9d0021e6c1d42b00c9ac7ebfd85632afbcc48a4
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^19.2.6":
+  version: 19.2.14
+  resolution: "@types/react@npm:19.2.14"
+  dependencies:
+    csstype: "npm:^3.2.2"
+  checksum: 10c0/7d25bf41b57719452d86d2ac0570b659210402707313a36ee612666bf11275a1c69824f8c3ee1fdca077ccfe15452f6da8f1224529b917050eb2d861e52b59b7
   languageName: node
   linkType: hard
 
@@ -1803,6 +1812,13 @@ __metadata:
   version: 4.2.0
   resolution: "crypto-js@npm:4.2.0"
   checksum: 10c0/8fbdf9d56f47aea0794ab87b0eb9833baf80b01a7c5c1b0edc7faf25f662fb69ab18dc2199e2afcac54670ff0cd9607a9045a3f7a80336cccd18d77a55b9fdf0
+  languageName: node
+  linkType: hard
+
+"csstype@npm:^3.2.2":
+  version: 3.2.3
+  resolution: "csstype@npm:3.2.3"
+  checksum: 10c0/cd29c51e70fa822f1cecd8641a1445bed7063697469d35633b516e60fe8c1bde04b08f6c5b6022136bb669b64c63d4173af54864510fbb4ee23281801841a3ce
   languageName: node
   linkType: hard
 

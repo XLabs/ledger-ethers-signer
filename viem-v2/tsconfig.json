@@ -3,15 +3,14 @@
     "outDir": "./lib/",
     "rootDir": "./src",
     "lib": ["es2024", "DOM"],
-    "module": "CommonJS",
+    "module": "NodeNext",
     "target": "es2024",
     "esModuleInterop": true,
     "strict": true,
     "declaration": true,
     "declarationMap": true,
     "composite": true,
-    "noErrorTruncation": true,
-    "moduleResolution": "node"
+    "noErrorTruncation": true
   },
   "exclude": [],
   "include": [
